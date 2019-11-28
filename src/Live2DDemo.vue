@@ -1,8 +1,9 @@
 <template>
   <div>
     <Live2D
+      :modelPath="'/live2d/models/suzukaze_aoba/index.json'"
       :message="hitokoto"
-      :showMessage="showHitokoto" 
+      :showMessage="showHitokoto"
       @onLive2DClick="fetchHitokoto"
     />
   </div>
@@ -67,7 +68,7 @@ export default {
       this.fetchInterval = setInterval(() => {
         this.fetchHitokoto();
       }, 30000);
-    },
+    }
   }
 };
 </script>

@@ -1,19 +1,53 @@
 # live2d-vue-component
 
-## Project setup
-```
-yarn install
-```
+> Live2D 看板娘组件 for Vue
 
-### Compiles and hot-reloads for development
-```
+![demo](./public/demo1.png)
+
+## 查看 Demo
+
+示例文件在：`src/Live2DDemo.vue`
+
+```sh
+# clone 本项目
+yarn install
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## 使用方式
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. 安装
+
+   ```
+   npm i live2d-vue-component
+   ```
+
+
+2. 在网站根目录放置 live2d 素材文件，本项目使用的素材在 `./public/live2d/models/suzukaze_aoba`
+
+3. 在 vue 组件中使用
+
+   ```vue
+   <template>
+     <div>
+       <Live2D
+         :modelPath="'/live2d/models/suzukaze_aoba/index.json'"
+         :message="Hello World!"
+         :showMessage="true"
+         @onLive2DClick="handleClick"
+       />
+     </div>
+   </template>
+   <script>
+   import Live2D from "live2d-vue-component";
+   export default {
+     components: {
+       Live2D
+     },
+   }
+   </script>
+   ```
+
+   
+
+

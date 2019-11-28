@@ -1,6 +1,6 @@
 {
   "name": "live2d-vue-component",
-  "description": "Display Live2D as vue component",
+  "description": "Live2D 看板娘组件 for Vue",
   "version": "0.1.0",
   "private": false,
   "author": "canwdev",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "core-js": "^3.4.3",
+    "imports-loader": "^0.8.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {

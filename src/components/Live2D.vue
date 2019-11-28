@@ -1,25 +1,36 @@
 <template>
   <div class="live2d-wrap" :class="{hidden}">
     <div class="action-group">
-      <button @click="hideLive2D">{{ hidden ? '显示Live2D' : '隐藏Live2D' }}</button>
+      <button @click="toogleHide">{{ hidden ? '显示Live2D' : '隐藏Live2D' }}</button>
     </div>
     <transition name="bounce">
       <div v-show="showMessage" class="message">{{ message }}</div>
     </transition>
-    <canvas id="live2d" width="280" height="500" class="live2d" @click.prevent="$emit('onLive2DClick')"></canvas>
+    <canvas
+      id="live2d"
+      width="280"
+      height="500"
+      class="live2d"
+      @click.prevent="$emit('onLive2DClick')"
+    ></canvas>
   </div>
 </template>
 
 <script>
-
-import load from "../utils/dynamicLoadScript";
+// 引入live2d的全局函数
+require("imports-loader?this=>window!../lib/live2d.js");
+const LS_LIVE2D_HIDDEN = "LS_LIVE2D_HIDDEN";
 
 export default {
   name: "Live2D",
   props: {
+    modelPath: {
+      type: String,
+      default: ''
+    },
     message: {
       type: [Boolean, String, Number],
-      default: 'Hello World!'
+      default: "Hello World!"
     },
     showMessage: {
       type: Boolean,
@@ -28,7 +39,7 @@ export default {
   },
   data: () => ({
     live2dStarted: false,
-    hidden: false
+    hidden: JSON.parse(localStorage.getItem(LS_LIVE2D_HIDDEN)) || false
   }),
   watch: {
     hidden(nv) {
@@ -37,7 +48,7 @@ export default {
       }
     }
   },
-  
+
   mounted() {
     setTimeout(() => {
       // 是否自动加载L2D
@@ -48,20 +59,16 @@ export default {
   },
   methods: {
     startLive2D() {
-      load("/live2d/js/live2d.js", err => {
-        if (err) {
-          console.error(err.message);
-          return;
-        }
-        // 启动live2d！
-        // eslint-disable-next-line no-undef
-        loadlive2d("live2d", "/live2d/models/suzukaze_aoba/index.json");
-        this.live2dStarted = true;
-        console.log("Live2d Started");
-      });
+      // 启动live2d！
+      // eslint-disable-next-line no-undef
+      loadlive2d("live2d", this.modelPath);
+      this.live2dStarted = true;
+      console.log("Live2d Started");
     },
-    hideLive2D() {
-      this.hidden = !this.hidden;
+    toogleHide() {
+      const stat = !this.hidden;
+      this.hidden = stat;
+      localStorage.setItem(LS_LIVE2D_HIDDEN, stat);
     }
   }
 };
@@ -135,7 +142,6 @@ $transition(time = 0.3s) {
     $transition();
 
     &>button {
-      $transition();
       background: $bg_color;
       border: 1px solid $border_color;
       border-radius: 10px;
