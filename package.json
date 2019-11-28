@@ -1,7 +1,7 @@
 {
   "name": "live2d-vue-component",
   "description": "Live2D 看板娘组件 for Vue",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "author": "canwdev",
   "homepage": "https://github.com/canwdev/live2d-vue-component",
