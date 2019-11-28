@@ -1,5 +1,9 @@
 <template>
-  <div class="live2d-wrap" :class="{hidden}">
+  <div
+    :style="{ width: width + 'px', height: height + 'px' }"
+    class="live2d-wrap"
+    :class="{hidden}"
+  >
     <div class="action-group">
       <button @click="toogleHide">{{ hidden ? '显示Live2D' : '隐藏Live2D' }}</button>
     </div>
@@ -8,8 +12,8 @@
     </transition>
     <canvas
       id="live2d"
-      width="280"
-      height="500"
+      :width="width"
+      :height="height+20"
       class="live2d"
       @click.prevent="$emit('onLive2DClick')"
     ></canvas>
@@ -24,6 +28,14 @@ const LS_LIVE2D_HIDDEN = "LS_LIVE2D_HIDDEN";
 export default {
   name: "Live2D",
   props: {
+    width: {
+      type: Number,
+      default: 160
+    },
+    height: {
+      type: Number,
+      default: 320
+    },
     modelPath: {
       type: String,
       default: ''
@@ -59,6 +71,10 @@ export default {
   },
   methods: {
     startLive2D() {
+      if (!this.modelPath) {
+        console.error('Live2D: 必须提供模型路径(modelPath)！')
+        return
+      }
       // 启动live2d！
       // eslint-disable-next-line no-undef
       loadlive2d("live2d", this.modelPath);
@@ -100,8 +116,8 @@ $transition(time = 0.3s) {
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 280px;
-  height: 430px;
+  /*width: 160px;*/
+  /*height: 320px;*/
   $transition(0.5s);
 
   @media screen and (max-width: $mobile_width) {
@@ -110,7 +126,7 @@ $transition(time = 0.3s) {
   }
 
   &.hidden {
-    height: 40px;
+    height: 40px !important;
     pointer-events: none;
 
     .action-group {
@@ -142,6 +158,7 @@ $transition(time = 0.3s) {
     $transition();
 
     &>button {
+      font-size: 12px
       background: $bg_color;
       border: 1px solid $border_color;
       border-radius: 10px;
