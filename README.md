@@ -2,8 +2,6 @@
 
 > Live2D 看板娘组件 for Vue
 
-![demo](./public/demo1.png)
-
 ## 查看 Demo
 
 示例文件在：`src/Live2DDemo.vue`
@@ -31,11 +29,11 @@ yarn serve
    <template>
      <div>
        <Live2D
-         :modelPath="'/live2d/models/suzukaze_aoba/index.json'"
-         :message="Hello World!"
-         :showMessage="true"
-         @onLive2DClick="handleClick"
-       />
+        :model-path="'/static/live2d/models/suzukaze_aoba/index.json'"
+        :message="'Hello World!'"
+        :show-message="true"
+        @onLive2DClick="()=>{}"
+      />
      </div>
    </template>
    <script>

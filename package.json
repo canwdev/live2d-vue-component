@@ -1,11 +1,11 @@
 {
   "name": "live2d-vue-component",
   "description": "Live2D 看板娘组件 for Vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "author": "canwdev",
   "homepage": "https://github.com/canwdev/live2d-vue-component",
-  "main": "src/main.js",
+  "main": "index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
