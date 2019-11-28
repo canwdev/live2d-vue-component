@@ -13,7 +13,7 @@
     <canvas
       id="live2d"
       :width="width"
-      :height="height+20"
+      :height="height+25"
       class="live2d"
       @click.prevent="$emit('onLive2DClick')"
     ></canvas>
@@ -38,7 +38,7 @@ export default {
     },
     modelPath: {
       type: String,
-      default: ''
+      default: ""
     },
     message: {
       type: [Boolean, String, Number],
@@ -72,8 +72,8 @@ export default {
   methods: {
     startLive2D() {
       if (!this.modelPath) {
-        console.error('Live2D: 必须提供模型路径(modelPath)！')
-        return
+        console.error("Live2D: 必须提供模型路径(modelPath)！");
+        return;
       }
       // 启动live2d！
       // eslint-disable-next-line no-undef
@@ -116,8 +116,8 @@ $transition(time = 0.3s) {
   position: fixed;
   bottom: 0;
   right: 0;
-  /*width: 160px;*/
-  /*height: 320px;*/
+  /* width: 160px; */
+  /* height: 320px; */
   $transition(0.5s);
 
   @media screen and (max-width: $mobile_width) {
@@ -158,7 +158,7 @@ $transition(time = 0.3s) {
     $transition();
 
     &>button {
-      font-size: 12px
+      font-size: 12px;
       background: $bg_color;
       border: 1px solid $border_color;
       border-radius: 10px;
